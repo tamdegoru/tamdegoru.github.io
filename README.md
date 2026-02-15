@@ -2,7 +2,7 @@
 
 load part-html
 ```
-hx-get="assets/partials/index.header.html"
+hx-get="partials/index.header.html"
 hx-trigger="load"
 hx-swap="outerHTML">
 ```
