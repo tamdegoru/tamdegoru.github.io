@@ -49,83 +49,41 @@
     <link rel="stylesheet" href="css/pages/index.css" />
   </head>
   <body>
-    <header class="header">
-      <nav
-        data-hx-trigger="load"
-        data-hx-swap="outerHTML"
-        data-hx-get="assets/partials/index.header.html"
-      ></nav>
-    </header>
-    <main class="main">
-      <section
-        data-hx-trigger="load"
-        data-hx-swap="outerHTML"
-        data-hx-get="assets/partials"
-      ></section>
-      <!---->
-      <section
-        data-hx-trigger="load"
-        data-hx-swap="outerHTML"
-        data-hx-get="assets/partials"
-      ></section>
-      <!---->
 
-      <!---->
-      <section
-        data-hx-trigger="load"
-        data-hx-swap="outerHTML"
-        data-hx-get="assets/partials"
-      ></section>
-      <!---->
 
-      <!---->
-      <section
-        data-hx-trigger="load"
-        data-hx-swap="outerHTML"
-        data-hx-get="assets/partials"
-      ></section>
-      <!---->
-      <!---->
-      <section
-        data-hx-trigger="load"
-        data-hx-swap="outerHTML"
-        data-hx-get="assets/partials"
-      ></section>
-      <!---->
-      <!---->
-      <section
-        data-hx-trigger="load"
-        data-hx-swap="outerHTML"
-        data-hx-get="assets/partials"
-      ></section>
-      <!---->
-      <!---->
-      <section
-        data-hx-trigger="load"
-        data-hx-swap="outerHTML"
-        data-hx-get="assets/partials"
-      ></section>
-      <!---->
-    </main>
-    <!---->
-    <section
-      data-hx-trigger="load"
-      data-hx-swap="outerHTML"
-      data-hx-get="assets/partials"
-    ></section>
-    <!---->
-    <!---->
-    <footer
-      class="footer"
-      data-hx-trigger="load"
-      data-hx-swap="outerHTML"
-      data-hx-get="assets/partials"
-    ></footer>
-    <!---->
+   <header class="header">
+  <nav
+    hx-get="assets/partials/index.header.html"
+    hx-trigger="load"
+    hx-swap="outerHTML">
+  </nav>
+</header>
+
+<main class="main">
+  <section
+    hx-get="assets/partials/section1.html"
+    hx-trigger="load"
+    hx-swap="outerHTML">
+  </section>
+
+  <section
+    hx-get="assets/partials/section2.html"
+    hx-trigger="load"
+    hx-swap="outerHTML">
+  </section>
+</main>
+
+<footer
+  hx-get="assets/partials/footer.html"
+  hx-trigger="load"
+  hx-swap="outerHTML">
+</footer>
+
     <script src="js/pages/index.js"></script>
   </body>	
 
 </html>
+
 
 
 
