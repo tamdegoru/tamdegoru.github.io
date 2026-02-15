@@ -1,12 +1,10 @@
 # tamdegoru.github.io
 
-html
+load part-html
 ```
-<main
-  data-hx-trigger="load"
-  data-hx-swap="outerHTML"
-  data-hx-get="index. ..."
-></main>
+hx-get="assets/partials/index.header.html"
+hx-trigger="load"
+hx-swap="outerHTML">
 ```
 Js
 ```
