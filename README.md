@@ -1,6 +1,5 @@
 # tamdegoru.github.io
 
-# HTML Template Repository with HTML Proofer
 
 Додавання папки 
 ```
@@ -13,7 +12,7 @@ html
 <main
   data-hx-trigger="load"
   data-hx-swap="outerHTML"
-  data-hx-get="index.""
+  data-hx-get="index. ..."
 ></main>
 ```
 Js
