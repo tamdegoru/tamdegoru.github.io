@@ -1,4 +1,4 @@
-# tamdegoru.github.io
+# https://tamdegoru.github.io/
 
 load part-html
 ```
