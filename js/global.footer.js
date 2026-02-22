@@ -1,4 +1,4 @@
-<script>
+
     // Автоматичний рік
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -11,4 +11,4 @@
             behavior: "smooth"
         });
     });
-</script>
+
