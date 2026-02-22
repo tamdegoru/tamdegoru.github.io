@@ -1,10 +1,16 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const scrollBtn = document.getElementById("scrollTopBtn");
 
-    // Автоматичний рік
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Поява кнопки при скролі
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 400) {
+            scrollBtn.classList.add("show");
+        } else {
+            scrollBtn.classList.remove("show");
+        }
+    });
 
-    // Кнопка вгору
-    const scrollBtn = document.querySelector(".scroll-top");
-
+    // Логіка кліку (плавний підйом)
     scrollBtn.addEventListener("click", () => {
         window.scrollTo({
             top: 0,
@@ -12,3 +18,9 @@
         });
     });
 
+    // Твій код для року (якщо він у цьому ж файлі)
+    const yearSpan = document.getElementById("year");
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+});
