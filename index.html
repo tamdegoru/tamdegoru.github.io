@@ -1,98 +1,29 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX Footer</title>
 
-<html>
- <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>checksite</title>
-    <link
-      rel=""
-      sizes="180x180"
-      href="img/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="img/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="img/favicon/favicon-16x16.png"
-    />
-    <link rel="manifest" href="img/favicon/site.webmanifest" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="img/favicon/android-chrome-192x192.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="512x512"
-      href="img/favicon/android-chrome-512x512.png"
-    />
-    <script
-      src="https://unpkg.com/htmx.org@1.9.10"
-      integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
 
+    <!-- Головний CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
 
-    <link rel="stylesheet" href="css/index.css" />
-  </head>
-  <body>
+<h1 style="padding:40px;">Скроль вниз 👇</h1>
 
- <!-- header завантажується через HTMX -->
-   <header class="header">
-  <nav
-    hx-get="partials/index.header.html"
+<!-- Підвантаження футера -->
+<div 
+    hx-get="partials/footer.html"
     hx-trigger="load"
-    hx-swap="outerHTML">
-  </nav>
-</header>
+    hx-swap="innerHTML">
+</div>
 
-<main class="main">
-  <section
-    hx-get="partials/section1.html"
-    hx-trigger="load"
-    hx-swap="outerHTML">
-  </section>
+<!-- JS -->
+<script src="js/footer.js"></script>
 
-  <section
-    hx-get="partials/section2.html"
-    hx-trigger="load"
-    hx-swap="outerHTML">
-  </section>
-</main>
-
-<footer
-  hx-get="partials/global.footer.html"
-  hx-trigger="load"
-  hx-swap="outerHTML">
-</footer>
-
-    <script src="js/index.js"></script>
-  </body>	
-
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
