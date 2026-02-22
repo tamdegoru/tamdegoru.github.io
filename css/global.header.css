@@ -1,75 +1,62 @@
-/* Загальні */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
+/* ================= HEADER ================= */
 
-html {
-    scroll-behavior: smooth;
-}
-
-/* HERO */
-.hero {
-    height: 100vh;
-    background: url("images/logo-removebg-preview.png") center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 40px;
-    position: relative;
-}
-
-/* затемнення */
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
-}
-
-.hero h1 {
-    position: relative;
-    z-index: 1;
-}
-
-/* HEADER */
 .header {
     position: fixed;
-    width: 100%;
     top: 0;
-    padding: 25px 50px;
-    background: transparent;
+    left: 0;
+    width: 100%;
     transition: all 0.4s ease;
     z-index: 1000;
 }
 
+/* Головний контейнер */
 .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 25px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* Логотип */
 .logo {
-    width: 140px;
-    transition: 0.4s;
+    width: 130px;
+    transition: 0.4s ease;
 }
 
-/* меню */
+/* Навігація */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 35px; /* рівномірний відступ */
+}
+
 .nav a {
-    margin-left: 25px;
     text-decoration: none;
     color: white;
     font-weight: 500;
+    position: relative;
     transition: 0.3s;
 }
 
-.nav a:hover {
-    color: orange;
+/* Підкреслення анімацією */
+.nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background: orange;
+    transition: 0.3s ease;
 }
 
-/* бургер */
+.nav a:hover::after {
+    width: 100%;
+}
+
+/* Бургер */
 .burger {
     display: none;
     font-size: 28px;
@@ -77,30 +64,36 @@ html {
     cursor: pointer;
 }
 
-/* ЕФЕКТ ШТОРКИ (після скролу) */
+/* ===== ЕФЕКТ ШТОРКИ ===== */
 .header.scrolled {
-    background: #1f2a1f;
-    padding: 12px 50px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    background: rgba(31, 42, 31, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.header.scrolled .header-container {
+    padding: 15px 40px;
 }
 
 .header.scrolled .logo {
-    width: 90px;
+    width: 95px;
 }
 
-/*  MOBILE */
 @media (max-width: 768px) {
+
+    .header-container {
+        padding: 20px;
+    }
 
     .nav {
         position: absolute;
-        top: 80px;
+        top: 100%;
         left: 0;
         width: 100%;
-        background: #1f2a1f;
-        display: none;
+        background: rgba(31, 42, 31, 0.98);
         flex-direction: column;
-        align-items: center;
-        padding: 20px 0;
+        padding: 25px 0;
+        display: none;
     }
 
     .nav a {
