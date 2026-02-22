@@ -34,31 +34,38 @@
 </div>
 
 <!-- JS -->
-<script src="js/global.footer.js"></script>
 
 <script >
 
-    document.addEventListener("DOMContentLoaded", () => {
+   document.addEventListener("DOMContentLoaded", () => {
+    // 1. Шукаємо кнопку за ID
     const scrollBtn = document.getElementById("scrollTopBtn");
 
-    // Поява кнопки при скролі
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 400) {
-            scrollBtn.classList.add("show");
-        } else {
-            scrollBtn.classList.remove("show");
-        }
-    });
-
-    // Логіка кліку (плавний підйом)
-    scrollBtn.addEventListener("click", () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
+    // 2. Код виконується ТІЛЬКИ якщо кнопка знайдена
+    if (scrollBtn) {
+        
+        window.addEventListener("scroll", () => {
+            // Перевіряємо скрол
+            if (window.scrollY > 400) {
+                scrollBtn.classList.add("show");
+            } else {
+                scrollBtn.classList.remove("show");
+            }
         });
-    });
 
-    // Твій код для року (якщо він у цьому ж файлі)
+        scrollBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+    } else {
+        // Це повідомлення з'явиться в консолі лише раз, якщо кнопки немає
+        console.warn("Кнопка #scrollTopBtn не знайдена на цій сторінці.");
+    }
+
+    // Автоматичний рік у футері
     const yearSpan = document.getElementById("year");
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
@@ -69,6 +76,7 @@
 
 </body>
 </html>
+
 
 
 
