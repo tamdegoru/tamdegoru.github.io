@@ -37,62 +37,49 @@
 
 <script >
 
- function initScrollButton() {
-    const scrollBtn = document.getElementById("scrollTopBtn");
-    const yearSpan = document.getElementById("year");
+const init = async () => {
+  console.log("Всі блоки завантажені. Імпортуємо скрипти...");
+  try {
+    const module = await import("js/global.footer.js");
+    // Якщо у модулі є функція ініціалізації:
+    // module.start(); 
+  } catch (err) {
+    console.error("Помилка завантаження модуля:", err);
+  }
+};
 
-    // 1. Логіка кнопки
-    if (scrollBtn && !scrollBtn.dataset.initialized) {
-        window.addEventListener("scroll", () => {
-            // Використовуємо 400 пікселів як поріг
-            if (window.scrollY > 400) {
-                scrollBtn.classList.add("show");
-            } else {
-                scrollBtn.classList.remove("show");
-            }
-        });
+const partials = document.querySelectorAll('[hx-trigger="load"], [data-hx-trigger="load"]');
+const totalPartials = partials.length;
+let processedCount = 0;
 
-        scrollBtn.addEventListener("click", () => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
+// Якщо на сторінці взагалі немає динамічних блоків, запускаємо одразу
+if (totalPartials === 0) {
+  init();
+} else {
+  document.body.addEventListener("htmx:afterSettle", (event) => {
+    // Перевіряємо, чи подія стосується одного з наших початкових запитів
+    processedCount++;
 
-        scrollBtn.dataset.initialized = "true";
-        console.log("Кнопка ініціалізована");
+    console.log(`Завантажено ${processedCount} з ${totalPartials}`);
+
+    if (processedCount >= totalPartials) {
+      init();
     }
+  });
 
-    // 2. Оновлення року
-    if (yearSpan && !yearSpan.dataset.initialized) {
-        yearSpan.textContent = new Date().getFullYear();
-        yearSpan.dataset.initialized = "true";
-    }
+  // Додатковий захист: якщо запит завершився помилкою, теж рахуємо його, 
+  // щоб сайт не "завис" у стані завантаження
+  document.body.addEventListener("htmx:responseError", () => {
+    processedCount++;
+    if (processedCount >= totalPartials) init();
+  });
 }
-
-// Важливо: HTMX видає подію після вставки контенту
-document.addEventListener("htmx:afterProcess", (event) => {
-    initScrollButton();
-});
-
-// На випадок, якщо футер завантажиться дуже швидко або буде статичним
-document.addEventListener("DOMContentLoaded", initScrollButton);
-
-    // Оновлення року
-    const yearSpan = document.getElementById("year");
-    if (yearSpan && !yearSpan.dataset.initialized) {
-        yearSpan.textContent = new Date().getFullYear();
-        yearSpan.dataset.initialized = "true";
-    }
-
-
-// Запуск при звичайному завантаженні
-document.addEventListener("DOMContentLoaded", initScrollButton);
-
-// Запуск щоразу, коли HTMX вставляє новий контент
-document.addEventListener("htmx:afterProcess", initScrollButton);
 </script>
     
 
 </body>
 </html>
+
 
 
 
