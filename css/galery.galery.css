@@ -44,6 +44,12 @@
     gap: 20px;
 }
 
+.galery-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
 .galery-grid img {
     width: 100%;
     height: 250px;
@@ -54,6 +60,25 @@
 
 .galery-grid img:hover {
     transform: scale(1.05);
+}
+
+.hide-image-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    background: #111;
+    color: #fff;
+    font-size: 14px;
+    transition: background 0.2s ease-in-out;
+}
+
+.hide-image-btn:hover {
+    background: #333;
+}
+
+.galery-card.is-hidden {
+    display: none;
 }
 
 .galery-footer {

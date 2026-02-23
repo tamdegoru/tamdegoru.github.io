@@ -26,3 +26,12 @@ export async function initSite() {
 }
 
 window.initSite = initSite;
+
+window.hideGalleryImage = (button) => {
+    const card = button.closest(".galery-card");
+    if (!card) {
+        return;
+    }
+
+    card.classList.add("is-hidden");
+};
