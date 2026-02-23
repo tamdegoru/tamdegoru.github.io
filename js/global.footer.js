@@ -2,43 +2,41 @@
  * Логіка для футера та загальних елементів інтерфейсу
  */
 
+let footerInitialized = false;
+
 export function initFooter() {
-    console.log("Footer script initialized");
+    if (footerInitialized) {
+        return true;
+    }
 
     const scrollBtn = document.getElementById("scrollTopBtn");
     const yearSpan = document.getElementById("year");
 
-    // 1. Оновлення поточного року
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
+    if (!scrollBtn || !yearSpan) {
+        return false;
     }
 
-    // 2. Логіка кнопки "Вгору"
-    if (scrollBtn) {
-        // Функція для показу/приховування кнопки
-        const toggleScrollButton = () => {
-            if (window.scrollY > 400) {
-                scrollBtn.classList.add("show");
-            } else {
-                scrollBtn.classList.remove("show");
-            }
-        };
+    yearSpan.textContent = new Date().getFullYear();
 
-        // Слухаємо скрол
-        window.addEventListener("scroll", toggleScrollButton);
+    const toggleScrollButton = () => {
+        if (window.scrollY > 400) {
+            scrollBtn.classList.add("show");
+        } else {
+            scrollBtn.classList.remove("show");
+        }
+    };
 
-        // Плавний скрол вгору при натисканні
-        scrollBtn.addEventListener("click", () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+    window.addEventListener("scroll", toggleScrollButton);
+
+    scrollBtn.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
         });
+    });
 
-        // Викликаємо один раз одразу, якщо користувач вже посередині сторінки при завантаженні
-        toggleScrollButton();
-    }
+    toggleScrollButton();
+
+    footerInitialized = true;
+    return true;
 }
-
-// Автоматичний запуск при імпорті
-initFooter();
