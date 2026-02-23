@@ -17,7 +17,7 @@ html {
 /* HERO СЕКЦІЯ */
 .hero {
     height: 100vh;
-    background: url("images/logo-removebg-preview.png") center/cover no-repeat;
+    background: url("images/index.our-facilities.partial-hero-bg.png") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
