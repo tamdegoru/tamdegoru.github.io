@@ -3,6 +3,9 @@ let modulesPromise;
 
 const MOBILE_MAX_WIDTH = 767;
 const MOBILE_VISIBLE_IMAGES = 5;
+const SLIDER_AUTOPLAY_MS = 5000;
+
+let galerySliderIntervalId;
 
 async function loadModules() {
     if (!modulesPromise) {
@@ -42,6 +45,55 @@ function initGalleryVisibility() {
     };
 }
 
+function initGalerySlider() {
+    const slidesTrack = document.querySelector("#galery-slides");
+
+    if (!slidesTrack) {
+        return;
+    }
+
+    const slides = Array.from(slidesTrack.querySelectorAll("img"));
+
+    if (slides.length === 0) {
+        return;
+    }
+
+    const totalSlides = slides.length;
+    let currentSlideIndex = 0;
+
+    const updateSlidePosition = () => {
+        slidesTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+    };
+
+    const goToNextSlide = () => {
+        currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+        updateSlidePosition();
+    };
+
+    const goToPreviousSlide = () => {
+        currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+        updateSlidePosition();
+    };
+
+    const resetAutoplay = () => {
+        window.clearInterval(galerySliderIntervalId);
+        galerySliderIntervalId = window.setInterval(goToNextSlide, SLIDER_AUTOPLAY_MS);
+    };
+
+    window.galeryNext = () => {
+        goToNextSlide();
+        resetAutoplay();
+    };
+
+    window.galeryPrev = () => {
+        goToPreviousSlide();
+        resetAutoplay();
+    };
+
+    updateSlidePosition();
+    resetAutoplay();
+}
+
 export async function initSite() {
     const [{ initHeader }, { initFooter }] = await loadModules();
 
@@ -49,6 +101,7 @@ export async function initSite() {
     const isFooterReady = initFooter();
 
     initGalleryVisibility();
+    initGalerySlider();
 
     isSiteInitialized = isHeaderReady && isFooterReady;
 }
