@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self'; 
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; 
+    style-src 'self' 'unsafe-inline'; 
+    img-src 'self' data:;
+    connect-src 'self' https://unpkg.com;
+">
+    <title>Оренда житла</title>
+    <link rel="icon" href="images/logohata.png" type="image/x-icon">
+
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <link rel="stylesheet" href="css/index.accomondation.css">
+</head>
+<body>
+
+<div 
+    hx-get="partials/global.header.html"
+    hx-trigger="load"
+    hx-swap="outerHTML">
+</div>
+
+<div 
+    hx-get="partials/accomondation.rooms.html"
+    hx-trigger="load"
+    hx-swap="outerHTML">
+</div>
+
+<div 
+    hx-get="partials/global.footer.html"
+    hx-trigger="load"
+    hx-swap="outerHTML">
+</div>
+
+<script>
+const tryInitSite = () => {
+    window.initSite?.();
+};
+
+document.addEventListener("DOMContentLoaded", tryInitSite);
+document.body.addEventListener("htmx:afterSwap", tryInitSite);
+document.body.addEventListener("htmx:afterSettle", tryInitSite);
+</script>
+
+<script type="module" src="js/index.accomondation.js"></script>
+</body>
+</html>
