@@ -41,7 +41,9 @@ function initGalleryVisibility() {
 
 function initGalerySlider() {
     const slidesTrack = document.querySelector("#galery-slides");
-    if (!slidesTrack) return;
+    const slider = document.querySelector(".galery-slider");
+
+    if (!slidesTrack || !slider) return;
 
     const slides = Array.from(slidesTrack.querySelectorAll("img"));
     if (!slides.length) return;
@@ -54,28 +56,32 @@ function initGalerySlider() {
     }
 
     function goToNextSlide() {
-        currentSlideIndex++;
-        if (currentSlideIndex >= totalSlides) {
-            currentSlideIndex = 0;
-        }
+        currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
         updateSlidePosition();
     }
 
     function goToPreviousSlide() {
-        currentSlideIndex--;
-        if (currentSlideIndex < 0) {
-            currentSlideIndex = totalSlides - 1;
-        }
+        currentSlideIndex =
+            (currentSlideIndex - 1 + totalSlides) % totalSlides;
         updateSlidePosition();
     }
 
     function startAutoplay() {
-        if (galerySliderIntervalId) {
-            clearInterval(galerySliderIntervalId);
-        }
-        galerySliderIntervalId = setInterval(goToNextSlide, SLIDER_AUTOPLAY_MS);
+        stopAutoplay();
+        galerySliderIntervalId = setInterval(
+            goToNextSlide,
+            SLIDER_AUTOPLAY_MS
+        );
     }
 
+    function stopAutoplay() {
+        if (galerySliderIntervalId) {
+            clearInterval(galerySliderIntervalId);
+            galerySliderIntervalId = null;
+        }
+    }
+
+    // Глобальні кнопки
     window.galeryNext = () => {
         goToNextSlide();
         startAutoplay();
@@ -85,6 +91,10 @@ function initGalerySlider() {
         goToPreviousSlide();
         startAutoplay();
     };
+
+    // Пауза при наведенні
+    slider.addEventListener("mouseenter", stopAutoplay);
+    slider.addEventListener("mouseleave", startAutoplay);
 
     updateSlidePosition();
     startAutoplay();
