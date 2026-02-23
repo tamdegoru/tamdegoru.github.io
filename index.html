@@ -37,15 +37,14 @@
 
 <script >
 
-   // Функція ініціалізації кнопки
-function initScrollButton() {
+ function initScrollButton() {
     const scrollBtn = document.getElementById("scrollTopBtn");
+    const yearSpan = document.getElementById("year");
 
-    if (scrollBtn) {
-        // Перевіряємо, чи ми вже не додали обробник, щоб не було дублікатів
-        if (scrollBtn.dataset.initialized) return;
-
+    // 1. Логіка кнопки
+    if (scrollBtn && !scrollBtn.dataset.initialized) {
         window.addEventListener("scroll", () => {
+            // Використовуємо 400 пікселів як поріг
             if (window.scrollY > 400) {
                 scrollBtn.classList.add("show");
             } else {
@@ -57,9 +56,24 @@ function initScrollButton() {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-        // Позначаємо кнопку як ініціалізовану
         scrollBtn.dataset.initialized = "true";
+        console.log("Кнопка ініціалізована");
     }
+
+    // 2. Оновлення року
+    if (yearSpan && !yearSpan.dataset.initialized) {
+        yearSpan.textContent = new Date().getFullYear();
+        yearSpan.dataset.initialized = "true";
+    }
+}
+
+// Важливо: HTMX видає подію після вставки контенту
+document.addEventListener("htmx:afterProcess", (event) => {
+    initScrollButton();
+});
+
+// На випадок, якщо футер завантажиться дуже швидко або буде статичним
+document.addEventListener("DOMContentLoaded", initScrollButton);
 
     // Оновлення року
     const yearSpan = document.getElementById("year");
@@ -79,6 +93,7 @@ document.addEventListener("htmx:afterProcess", initScrollButton);
 
 </body>
 </html>
+
 
 
 
