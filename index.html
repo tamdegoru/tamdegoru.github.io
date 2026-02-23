@@ -42,31 +42,17 @@
 
 <!-- JS -->
 
-<script >
-const partials = document.querySelectorAll('[hx-trigger="load"], [data-hx-trigger="load"]');
-const totalPartials = partials.length;
-let processedCount = 0;
+<script>
+const tryInitSite = () => {
+    window.initSite?.();
+};
 
-// Створюємо Set, щоб не рахувати один і той самий елемент двічі
-const processedElements = new Set();
-
-document.body.addEventListener("htmx:afterSettle", (event) => {
-    const target = event.target;
-
-    // Перевіряємо, чи цей елемент — один із наших паршалів і чи ми його ще не рахували
-    if (target.hasAttribute('hx-get') && !processedElements.has(target)) {
-        processedElements.add(target);
-        processedCount++;
-        
-        console.log(`(index): Завантажено ${processedCount} з ${totalPartials}`);
-
-        if (processedCount >= totalPartials) {
-            init(); // Ваша функція з import("./js/global.footer.js")
-        }
-    }
-});
+document.addEventListener("DOMContentLoaded", tryInitSite);
+document.body.addEventListener("htmx:afterSwap", tryInitSite);
+document.body.addEventListener("htmx:afterSettle", tryInitSite);
 </script>
     
+<script type="module" src="js/index.js"></script>
 
 </body>
 </html>
