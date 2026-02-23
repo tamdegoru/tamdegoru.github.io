@@ -36,49 +36,34 @@
 <!-- JS -->
 
 <script >
-
-const init = async () => {
-  console.log("Всі блоки завантажені. Імпортуємо скрипти...");
-  try {
-    const module = await import("js/global.footer.js");
-    // Якщо у модулі є функція ініціалізації:
-    // module.start(); 
-  } catch (err) {
-    console.error("Помилка завантаження модуля:", err);
-  }
-};
-
 const partials = document.querySelectorAll('[hx-trigger="load"], [data-hx-trigger="load"]');
 const totalPartials = partials.length;
 let processedCount = 0;
 
-// Якщо на сторінці взагалі немає динамічних блоків, запускаємо одразу
-if (totalPartials === 0) {
-  init();
-} else {
-  document.body.addEventListener("htmx:afterSettle", (event) => {
-    // Перевіряємо, чи подія стосується одного з наших початкових запитів
-    processedCount++;
+// Створюємо Set, щоб не рахувати один і той самий елемент двічі
+const processedElements = new Set();
 
-    console.log(`Завантажено ${processedCount} з ${totalPartials}`);
+document.body.addEventListener("htmx:afterSettle", (event) => {
+    const target = event.target;
 
-    if (processedCount >= totalPartials) {
-      init();
+    // Перевіряємо, чи цей елемент — один із наших паршалів і чи ми його ще не рахували
+    if (target.hasAttribute('hx-get') && !processedElements.has(target)) {
+        processedElements.add(target);
+        processedCount++;
+        
+        console.log(`(index): Завантажено ${processedCount} з ${totalPartials}`);
+
+        if (processedCount >= totalPartials) {
+            init(); // Ваша функція з import("./js/global.footer.js")
+        }
     }
-  });
-
-  // Додатковий захист: якщо запит завершився помилкою, теж рахуємо його, 
-  // щоб сайт не "завис" у стані завантаження
-  document.body.addEventListener("htmx:responseError", () => {
-    processedCount++;
-    if (processedCount >= totalPartials) init();
-  });
-}
+});
 </script>
     
 
 </body>
 </html>
+
 
 
 
