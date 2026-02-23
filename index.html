@@ -37,15 +37,15 @@
 
 <script >
 
-   document.addEventListener("DOMContentLoaded", () => {
-    // 1. Шукаємо кнопку за ID
+   // Функція ініціалізації кнопки
+function initScrollButton() {
     const scrollBtn = document.getElementById("scrollTopBtn");
 
-    // 2. Код виконується ТІЛЬКИ якщо кнопка знайдена
     if (scrollBtn) {
-        
+        // Перевіряємо, чи ми вже не додали обробник, щоб не було дублікатів
+        if (scrollBtn.dataset.initialized) return;
+
         window.addEventListener("scroll", () => {
-            // Перевіряємо скрол
             if (window.scrollY > 400) {
                 scrollBtn.classList.add("show");
             } else {
@@ -54,28 +54,32 @@
         });
 
         scrollBtn.addEventListener("click", () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-    } else {
-        // Це повідомлення з'явиться в консолі лише раз, якщо кнопки немає
-        console.warn("Кнопка #scrollTopBtn не знайдена на цій сторінці.");
+        // Позначаємо кнопку як ініціалізовану
+        scrollBtn.dataset.initialized = "true";
     }
 
-    // Автоматичний рік у футері
+    // Оновлення року
     const yearSpan = document.getElementById("year");
-    if (yearSpan) {
+    if (yearSpan && !yearSpan.dataset.initialized) {
         yearSpan.textContent = new Date().getFullYear();
+        yearSpan.dataset.initialized = "true";
     }
-});
+}
+
+// Запуск при звичайному завантаженні
+document.addEventListener("DOMContentLoaded", initScrollButton);
+
+// Запуск щоразу, коли HTMX вставляє новий контент
+document.addEventListener("htmx:afterProcess", initScrollButton);
 </script>
     
 
 </body>
 </html>
+
 
 
 
