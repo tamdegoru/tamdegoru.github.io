@@ -8,7 +8,6 @@
 
 .galery-slides {
     display: flex;
-    width: 700%;
     transition: transform 0.5s ease-in-out;
 }
 
@@ -16,6 +15,8 @@
     width: 100%;
     height: 400px;
     object-fit: cover;
+     /* КРИТИЧНО ВАЖЛИВО */
+    flex: 0 0 100%;
 }
 
 .galery-buttons {
