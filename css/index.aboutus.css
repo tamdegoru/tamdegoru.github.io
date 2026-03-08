@@ -1,0 +1,73 @@
+/* Стилі для текстового блоку без послуг */
+    .tdg-about-text-fade-in-wrapper {
+        animation: tdgEntranceAnimation 1s ease-out;
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 60px 20px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .tdg-about-hero-full-text-container {
+        background: rgba(0, 0, 0, 0.35); /* Легка підкладка для читабельності на фото */
+        backdrop-filter: blur(8px);
+        padding: 40px;
+        border-radius: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tdg-about-hero-main-title-display {
+        font-family: 'Pacifico', cursive;
+        font-size: clamp(30px, 6vw, 52px);
+        color: #ff9800;
+        margin-bottom: 30px;
+        text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .tdg-about-hero-lead-paragraph {
+        font-size: clamp(18px, 2.5vw, 22px);
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-weight: 400;
+    }
+
+    .tdg-about-hero-secondary-paragraph {
+        font-size: clamp(16px, 2vw, 19px);
+        line-height: 1.7;
+        color: #e0e0e0;
+        font-weight: 300;
+        font-style: italic;
+    }
+
+    .tdg-about-hero-final-divider {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 152, 0, 0.3);
+    }
+
+    .tdg-divider-accent-symbol {
+        color: #ff9800;
+        font-size: 20px;
+        letter-spacing: 8px;
+    }
+
+    @keyframes tdgEntranceAnimation {
+        from { 
+            opacity: 0; 
+            transform: translateY(25px); 
+        }
+        to { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+    }
+
+    /* Адаптація для мобільних */
+    @media (max-width: 600px) {
+        .tdg-about-hero-full-text-container {
+            padding: 25px 15px;
+        }
+        .tdg-about-hero-main-title-display {
+            margin-bottom: 20px;
+        }
+    }
