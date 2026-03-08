@@ -27,7 +27,7 @@
             
             /* ТУТ ТВОЄ СПІЛЬНЕ ЗОБРАЖЕННЯ */
             background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
-                              url('images/header.hero.bg.jpg');
+                              url('../images/header.hero.bg.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
