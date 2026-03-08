@@ -114,7 +114,6 @@
 
         .tdg-about-hero-main-title-display {
             color: #ff9800;
-            font-family: 'Pacifico', cursive;
             font-size: clamp(32px, 5vw, 52px);
             margin-bottom: 25px;
             text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.4);
