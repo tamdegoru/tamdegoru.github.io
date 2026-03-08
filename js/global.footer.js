@@ -1,41 +1,27 @@
-/**
- * Логіка для футера та загальних елементів інтерфейсу
- */
-
+// Змінна для перевірки, чи вже запущено ініціалізацію
 let footerInitialized = false;
 
 export function initFooter() {
-    if (footerInitialized) {
-        return true;
-    }
+    if (footerInitialized) return true;
 
-    const scrollBtn = document.getElementById("scrollTopBtn");
+    // Отримання посилань на елементи DOM
+    const footerLogo = document.getElementById("footerLogo");
     const yearSpan = document.getElementById("year");
 
-    if (!scrollBtn || !yearSpan) {
-        return false;
+    // Вставка поточного року в копірайт
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
     }
 
-    yearSpan.textContent = new Date().getFullYear();
-
-    const toggleScrollButton = () => {
-        if (window.scrollY > 400) {
-            scrollBtn.classList.add("show");
-        } else {
-            scrollBtn.classList.remove("show");
-        }
-    };
-
-    window.addEventListener("scroll", toggleScrollButton);
-
-    scrollBtn.addEventListener("click", () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
+    // Обробка кліку на логотип для плавного скролу до початку сторінки
+    if (footerLogo) {
+        footerLogo.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         });
-    });
-
-    toggleScrollButton();
+    }
 
     footerInitialized = true;
     return true;
