@@ -1,36 +1,38 @@
-/* Основна обгортка з фоновим малюнком */
+/* Основна обгортка з фоновим зображенням */
 .tdg-about-text-fade-in-wrapper {
     animation: tdgEntranceAnimation 1s ease-out;
-    max-width: 100%; /* Розширюємо для фону */
+    max-width: 100%; 
     margin: 0 auto;
-    padding: 100px 20px; /* Збільшено відступи для кращого вигляду фону */
+    padding: 120px 20px; /* Збільшені відступи, щоб фон було видно краще */
     text-align: center;
     color: #ffffff;
-    /* Встановлення зображення фоном */
-    background: url('images/about.png') no-repeat center center;
+    
+    /* ВСТАВЛЕНО ПОСИЛАННЯ НА ВАШЕ ЗОБРАЖЕННЯ */
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/about.png') no-repeat center center;
     background-size: cover;
-    background-attachment: fixed; /* Створює ефект паралаксу при скролі */
+    background-attachment: fixed;
 }
 
-/* Напівпрозора картка (сірий квадрат) */
+/* Сіра картка (зроблена більш прозорою за вашим запитом) */
 .tdg-about-hero-full-text-container {
-    /* Зменшено непрозорість до 0.25 для більшої прозорості */
-    background: rgba(0, 0, 0, 0.25); 
-    backdrop-filter: blur(12px); /* Посилено розмиття для преміального ефекту */
-    padding: 40px;
-    border-radius: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    max-width: 850px; /* Обмежуємо ширину самої картки всередині фону */
+    /* Прозорість змінена з 0.35 на 0.2 для кращого вигляду фону */
+    background: rgba(40, 44, 40, 0.2); 
+    backdrop-filter: blur(12px); /* Ефект розмиття фону */
+    padding: 50px 40px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 850px;
     margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Заголовок (змінено колір та шрифт) */
+/* Заголовок (оновлений на більш цікавий варіант) */
 .tdg-about-hero-main-title-display {
     font-family: 'Pacifico', cursive;
-    font-size: clamp(30px, 6vw, 52px);
-    color: #ff9800; /* Помаранчевий колір збережено */
+    font-size: clamp(32px, 6vw, 56px);
+    color: #ff9800; /* Помаранчевий акцент */
     margin-bottom: 30px;
-    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .tdg-about-hero-lead-paragraph {
@@ -43,7 +45,7 @@
 .tdg-about-hero-secondary-paragraph {
     font-size: clamp(16px, 2vw, 19px);
     line-height: 1.7;
-    color: #e0e0e0;
+    color: #f0f0f0;
     font-weight: 300;
     font-style: italic;
 }
@@ -57,13 +59,13 @@
 .tdg-divider-accent-symbol {
     color: #ff9800;
     font-size: 20px;
-    letter-spacing: 8px;
+    letter-spacing: 10px;
 }
 
 @keyframes tdgEntranceAnimation {
     from { 
         opacity: 0; 
-        transform: translateY(25px); 
+        transform: translateY(30px); 
     }
     to { 
         opacity: 1; 
@@ -71,12 +73,8 @@
     }
 }
 
-/* Адаптація для мобільних */
 @media (max-width: 600px) {
     .tdg-about-hero-full-text-container {
-        padding: 25px 15px;
-    }
-    .tdg-about-hero-main-title-display {
-        margin-bottom: 20px;
+        padding: 30px 20px;
     }
 }
