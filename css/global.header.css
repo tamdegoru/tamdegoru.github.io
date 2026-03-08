@@ -1,76 +1,167 @@
+/* 1. Скидання стилів та базові налаштування */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden; /* Захист від горизонтальної прокрутки */
+    color: #333;
+}
+
+/* 2. ШАПКА (HEADER) */
 .header {
     position: fixed;
+    width: 100%;
     top: 0;
     left: 0;
-    width: 100%;
     padding: 20px 0;
-    background: rgba(0,0,0,0.45);
-    transition: 0.4s;
+    /* Початковий напівпрозорий фон */
+    background: rgba(0, 0, 0, 0.3); 
+    transition: all 0.4s ease;
     z-index: 1000;
+}
+
+/* Ефект при скролі (додається через JS) */
+.header.scrolled {
+    background: #1a241a;
+    padding: 10px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .header-container {
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
     padding: 0 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.logo{
-    width:120px;
-    transition:0.4s;
+.logo {
+    width: 120px;
+    height: auto;
+    display: block;
+    transition: 0.4s;
 }
 
-.nav{
-    display:flex;
+.header.scrolled .logo {
+    width: 90px;
 }
 
-.nav a{
-    margin-left:30px;
-    text-decoration:none;
-    color:white;
-    font-size:16px;
+/* 3. НАВІГАЦІЯ (MENU) */
+.nav {
+    display: flex;
+    align-items: center;
 }
 
-.nav a:hover{
-    color:orange;
+.nav a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.3s;
+    white-space: nowrap;
 }
 
-.burger{
-    display:none;
-    font-size:30px;
-    color:white;
-    cursor:pointer;
+.nav a:hover {
+    color: #ff9800; /* Помаранчевий акцент */
 }
 
-@media (max-width:768px){
+/* 4. БУРГЕР-КНОПКА */
+.burger {
+    display: none; /* Сховано на десктопах */
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    z-index: 1100;
+    transition: 0.3s;
+    user-select: none;
+}
 
-    .nav{
-        position:fixed;
-        top:0;
-        right:-100%;
-        width:250px;
-        height:100vh;
-        background:#1f2a1f;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-        transition:0.4s;
+/* 5. HERO СЕКЦІЯ */
+.hero {
+    height: 100vh;
+    background: url("images/gallery/gallery3.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+    text-align: center;
+}
+
+/* Темний фільтр на фонове фото */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 8vw, 64px); /* Адаптивний розмір шрифту */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    margin-top: 10px;
+}
+
+/* 6. АДАПТИВНІСТЬ (MOBILE) */
+@media (max-width: 768px) {
+    .burger {
+        display: block; /* Показуємо бургер */
     }
 
-    .nav.active{
-        right:0;
+    .nav {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Ховаємо меню за межі екрана */
+        width: 280px;
+        height: 100vh;
+        background: #1a241a;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -10px 0 20px rgba(0,0,0,0.5);
     }
 
-    .nav a{
-        margin:20px 0;
-        font-size:20px;
+    /* Клас, який додається через JavaScript */
+    .nav.active {
+        right: 0;
     }
 
-    .burger{
-        display:block;
+    .nav a {
+        margin: 15px 0;
+        font-size: 22px;
+        width: 100%;
+        text-align: center;
     }
-
 }
