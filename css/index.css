@@ -2,10 +2,13 @@
 @import url("global.footer.css");
 
 @import url("galery.galery.css");
-@import url("index.aboutus.css");
+@import url("index.hero.aboutus.css");
 @import url("index.services.css");
 @import url("accomondation.rooms.css");
-@import url("index.telephone.css");
+/* окремий клас для форми */
+/*@import url("index.telephone.css");*/
+/* окремий клас для backgound */
+/* @import url("index.hero.bg.css")*/
 
 
 /* Віддзеркалення по горизонталі */
