@@ -13,8 +13,8 @@
     align-items: center;
     padding: 80px 20px;
     
-    /* СЮДИ ВСТАВИТИ ПОСИЛАННЯ НА ВАШЕ ФОНОВЕ ЗОБРАЖЕННЯ */
-    background: url('path/to/your/image.jpg') no-repeat center center; /* Вставте шлях до файлу або посилання */
+    /*  ПОСИЛАННЯ НА ФОНОВЕ ЗОБРАЖЕННЯ */
+    background: url('images/about.png') no-repeat center center; /* Вставте шлях до файлу або посилання */
     background-size: cover; /* Зображення на весь екран */
     background-attachment: fixed; /* Створює легкий ефект паралаксу при скролі */
 }
