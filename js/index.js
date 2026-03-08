@@ -118,3 +118,19 @@ window.addEventListener("resize", () => {
     if (!isSiteInitialized) return;
     initGalleryVisibility();
 });
+
+/*header*/
+const burger = document.getElementById("burger");
+const nav = document.getElementById("nav");
+
+burger.addEventListener("click", () => {
+
+    nav.classList.toggle("active");
+
+    if(nav.classList.contains("active")){
+        burger.textContent = "✕";
+    } else {
+        burger.textContent = "☰";
+    }
+
+});
