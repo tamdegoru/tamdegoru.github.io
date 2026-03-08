@@ -1,4 +1,3 @@
-
 .services {
   background: url("../../img/services/services-bg.jpg") center/cover no-repeat;
   padding: 80px 0;
@@ -6,7 +5,7 @@
 }
 
 .services__container {
-  max-width: 1200px;         
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -14,92 +13,79 @@
 .services__header {
   display: flex;
   justify-content: center;
-  align-items: center;
   margin-bottom: 40px;
 }
 
 .services__title {
   font-size: 38px;
+  font-family: "Pacifico", cursive;
+  color: white;
   text-align: center;
-  font-family: "Pacifico", cursive; /* Використовуємо ваш фірмовий шрифт */
-  color: var(--color-darkgr);
-  margin: 0;
 }
 
 .services__list {
   display: grid;
-  gap: 32px;                 
+  gap: 32px;
   list-style: none;
-  margin: 0;
   padding: 0;
-  grid-template-columns: 1fr; 
+  margin: 0;
+  grid-template-columns: 1fr;
 }
 
 @media (min-width: 640px) {
-  .services__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .services__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (min-width: 1024px) {
-  .services__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .services__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.services__item { height: 100%; }
-
 .services__card {
-  height: 100%;
+  position: relative;
+  height: 320px;
+  border-radius: 16px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
-  border: 1px solid rgba(0,0,0,.04);
-  border-radius: 16px;
+  justify-content: flex-end;
   padding: 24px;
-  text-align: center;
-  box-shadow: 0 6px 24px rgba(0,0,0,.08);
+  color: white;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 6px 24px rgba(0,0,0,.2);
   transition: transform .3s ease, box-shadow .3s ease;
 }
 
+.services__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
 .services__card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 32px rgba(0,0,0,.15);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(0,0,0,.4);
 }
 
-.services__media {
-  /* Змінюємо 16/9 на 9/16 для вертикального формату */
-  aspect-ratio: 9 / 16;     
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 20px;
-  background-color: #f5f5f5;
-  
-  /* Обмежуємо максимальну висоту, щоб картки не були надто довгими на десктопах */
-  max-height: 450px; 
-  width: 100%;
-}
-
-.services__image {
-  width: 100%;
-  height: 100%;
-  display: block;
-  /* object-fit: cover гарантує, що фото заповнить всю площу без деформації */
-  object-fit: cover; 
-  transition: transform 0.5s ease;
-}
-
-.services__card:hover .services__image {
-  transform: scale(1.08);
+.services__subtitle,
+.services__description {
+  position: relative;
+  z-index: 2;
 }
 
 .services__subtitle {
   font-size: 22px;
   font-family: "Plus Jakarta Sans", sans-serif;
-  color: var(--color-darkgr);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .services__description {
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.6;
   font-family: "Roboto", sans-serif;
-  color: #555;
-  margin: 0 auto;
 }
