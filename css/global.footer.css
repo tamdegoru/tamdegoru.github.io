@@ -1,9 +1,11 @@
+/* Основний фон та колір тексту футера */
 .footer {
-    background: #1f2a1f;
+    background: #1f2a1f; 
     color: white;
     padding: 60px 20px 20px;
 }
 
+/* Сітка для розташування 4 колонок */
 .footer-container {
     max-width: 1200px;
     margin: auto;
@@ -12,39 +14,30 @@
     gap: 40px;
 }
 
-.footer-section h3 {
-    margin-bottom: 15px;
-}
+.footer-section h3 { margin-bottom: 15px; }
 
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-}
+.footer-section ul { list-style: none; padding: 0; }
+.footer-section ul li { margin-bottom: 10px; }
 
-.footer-section ul li {
-    margin-bottom: 10px;
-}
-
+/* Стилізація посилань */
 .footer-section a {
     color: white;
     text-decoration: none;
     transition: 0.3s;
 }
 
-.footer-section a:hover {
-    color: orange;
-}
+.footer-section a:hover { color: orange; }
 
+/* Логотип: налаштування розміру та курсору для кліку */
 .footer-logo {
     width: 120px;
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
-.social-icons a {
-    display: block;
-    margin-bottom: 10px;
-}
+.social-icons a { display: block; margin-bottom: 10px; }
 
+/* Нижня смужка футера */
 .footer-bottom {
     border-top: 1px solid #444;
     margin-top: 40px;
@@ -55,26 +48,12 @@
     flex-wrap: wrap;
 }
 
-.scroll-top {
-    background: orange;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.scroll-top:hover {
-    background: darkorange;
-}
-
-/* 📱 Адаптивність */
+/* Адаптивність для телефонів (одна колонка) */
 @media (max-width: 768px) {
     .footer-container {
         grid-template-columns: 1fr;
         text-align: center;
     }
-
     .footer-bottom {
         flex-direction: column;
         gap: 15px;
