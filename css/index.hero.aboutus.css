@@ -1,1 +1,161 @@
+/* 1. БАЗОВІ НАЛАШТУВАННЯ */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background-color: #1a241a; /* Колір-заглушка */
+        }
+
+      
+        /* 3. СПІЛЬНИЙ ФОН ДЛЯ ОБОХ СЕКЦІЙ */
+        .hero, .tdg-booking-section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            
+            /* ТУТ ТВОЄ СПІЛЬНЕ ЗОБРАЖЕННЯ */
+            background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
+                              url('header.hero.bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* ФІКСАЦІЯ ФОНУ (Ефект перегортання) */
+        }
+
+        /* 4. СЕКЦІЯ HOME (З ФОРМОЮ) */
+        .hero {
+            justify-content: flex-end;
+            padding: 0 7vw;
+        }
+
+        .hero-lead-form {
+            width: min(100%, 430px);
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 35px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-lead-form h1 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .hero-lead-form p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-lead-form input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            outline: none;
+        }
+
+        .hero-lead-form button {
+            background: #ff8c2f;
+            color: #fff;
+            border: none;
+            padding: 16px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 140, 47, 0.4);
+            transition: 0.3s ease;
+        }
+
+        .hero-lead-form button:hover {
+            background: #ff7a12;
+            transform: translateY(-2px);
+        }
+
+        /* 5. СЕКЦІЯ ABOUT (ПРО НАС) */
+        .tdg-booking-section {
+            justify-content: center;
+            padding: 100px 20px;
+        }
+
+        .tdg-about-hero-full-text-container {
+            background: rgba(0, 0, 0, 0.3); /* Темніша прозорість для читабельності */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 60px 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 850px;
+            text-align: center;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+        }
+
+        .tdg-about-hero-main-title-display {
+            color: #ff9800;
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(32px, 5vw, 52px);
+            margin-bottom: 25px;
+            text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .tdg-about-hero-lead-paragraph {
+            font-size: clamp(18px, 2.5vw, 22px);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .tdg-about-hero-lead-paragraph strong {
+            color: #ffb74d;
+        }
+
+        .tdg-about-hero-secondary-paragraph {
+            font-size: clamp(16px, 2vw, 19px);
+            line-height: 1.7;
+            color: #e0e0e0;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .tdg-about-hero-final-divider {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 152, 0, 0.3);
+        }
+
+        .tdg-divider-accent-symbol {
+            color: #ff9800;
+            font-size: 22px;
+            letter-spacing: 12px;
+        }
+
+        /* 6. МОБІЛЬНА АДАПТАЦІЯ */
+        @media (max-width: 768px) {
+            .hero { justify-content: center; padding: 0 20px; }
+            .header-container { padding: 0 15px; }
+            .nav { display: none; } /* Для простоти бургер тут не прописаний */
+            /* На мобільних фіксований фон іноді глючить, тому вимикаємо */
+            .hero, .tdg-booking-section { background-attachment: scroll; } 
+        }
