@@ -7,6 +7,22 @@
 @import url("accomondation.rooms.css");
 
 
+/* Віддзеркалення по горизонталі */
+.flip-h {
+  transform: scaleX(-1);
+}
+
+/* Віддзеркалення по вертикалі */
+.flip-v {
+  transform: scaleY(-1);
+}
+
+/* Віддзеркалення по обох осях (180 градусів) */
+.flip-both {
+  transform: scale(-1, -1);
+}
+
+
 
 
 
