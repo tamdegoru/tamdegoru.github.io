@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 /* 1. Скидання стилів та базові налаштування */
 * {
     box-sizing: border-box;
@@ -120,11 +121,13 @@ body {
 }
 
 .hero h1 {
-    font-size: clamp(32px, 8vw, 64px); /* Адаптивний розмір шрифту */
-    margin-bottom: 20px;
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(36px, 9vw, 70px); /* Pacifico трохи дрібніший, тому я трохи збільшив значення */
+    font-weight: 400;
+    color: white;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
 }
-
 .hero-image {
     max-width: 100%;
     height: auto;
