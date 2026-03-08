@@ -1,80 +1,91 @@
-/* Основна обгортка з фоновим зображенням */
-.tdg-about-text-fade-in-wrapper {
-    animation: tdgEntranceAnimation 1s ease-out;
-    max-width: 100%; 
-    margin: 0 auto;
-    padding: 120px 20px; /* Збільшені відступи, щоб фон було видно краще */
-    text-align: center;
-    color: #ffffff;
+/* Секція для розміщення контейнера */
+.tdg-booking-section {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Контейнер із фоновим зображенням */
+.tdg-booking-container {
+    width: 100%;
+    min-height: 100vh; /* Контейнер на всю висоту екрана */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
     
-    /* ВСТАВЛЕНО ПОСИЛАННЯ НА ВАШЕ ЗОБРАЖЕННЯ */
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/about.png') no-repeat center center;
-    background-size: cover;
-    background-attachment: fixed;
+    /* СЮДИ ВСТАВИТИ ПОСИЛАННЯ НА ВАШЕ ФОНОВЕ ЗОБРАЖЕННЯ */
+    background: url('path/to/your/image.jpg') no-repeat center center; /* Вставте шлях до файлу або посилання */
+    background-size: cover; /* Зображення на весь екран */
+    background-attachment: fixed; /* Створює легкий ефект паралаксу при скролі */
 }
 
-/* Сіра картка (зроблена більш прозорою за вашим запитом) */
+/* Контейнер у стилі матового скла (відповідає формі) */
 .tdg-about-hero-full-text-container {
-    /* Прозорість змінена з 0.35 на 0.2 для кращого вигляду фону */
-    background: rgba(40, 44, 40, 0.2); 
-    backdrop-filter: blur(12px); /* Ефект розмиття фону */
-    padding: 50px 40px;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    max-width: 850px;
-    margin: 0 auto;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(40, 44, 40, 0.3); /* Глибокий колір із прозорістю як у формі */
+    backdrop-filter: blur(12px); /* Ефект розмиття */
+    -webkit-backdrop-filter: blur(12px); /* Підтримка для Safari */
+    padding: 60px 40px; /* Великі відступи */
+    border-radius: 20px; /* Закруглені кути */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Тонка біла рамка */
+    max-width: 800px; /* Максимальна ширина */
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4); /* Глибока тінь */
 }
 
-/* Заголовок (оновлений на більш цікавий варіант) */
+/* Помаранчевий заголовок (колір із форми) */
 .tdg-about-hero-main-title-display {
-    font-family: 'Pacifico', cursive;
-    font-size: clamp(32px, 6vw, 56px);
-    color: #ff9800; /* Помаранчевий акцент */
+    color: #ff9800; /* Яскраво-помаранчевий колір заголовків tamdegoru */
+    font-size: clamp(30px, 6vw, 52px); /* Адаптивний шрифт */
+    font-weight: 700;
     margin-bottom: 30px;
-    text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5); /* Виразніша тінь */
 }
 
+/* Текст tamdegoru у лід-абзаці */
+.tdg-about-hero-lead-paragraph strong {
+    color: #ffb74d; /* Легший помаранчевий для тексту */
+    font-weight: 600;
+}
+
+/* Провідний абзац (більший) */
 .tdg-about-hero-lead-paragraph {
     font-size: clamp(18px, 2.5vw, 22px);
+    color: #ffffff; /* Білий колір */
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-weight: 400;
 }
 
+/* Другий абзац (сірий, курсив) */
 .tdg-about-hero-secondary-paragraph {
     font-size: clamp(16px, 2vw, 19px);
     line-height: 1.7;
-    color: #f0f0f0;
+    color: #e0e0e0; /* Сірий відтінок */
     font-weight: 300;
     font-style: italic;
 }
 
+/* Роздільник (✦ ✦ ✦) */
 .tdg-about-hero-final-divider {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 152, 0, 0.3);
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 152, 0, 0.3); /* Тонка помаранчева лінія */
 }
 
+/* Стиль для символів ✦ */
 .tdg-divider-accent-symbol {
-    color: #ff9800;
+    color: #ff9800; /* Помаранчевий */
     font-size: 20px;
-    letter-spacing: 10px;
+    letter-spacing: 12px;
 }
 
-@keyframes tdgEntranceAnimation {
-    from { 
-        opacity: 0; 
-        transform: translateY(30px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
+/* Адаптація для мобільних пристроїв */
 @media (max-width: 600px) {
     .tdg-about-hero-full-text-container {
-        padding: 30px 20px;
+        padding: 40px 20px;
+    }
+    .tdg-about-hero-final-divider {
+        margin-top: 25px;
+        padding-top: 20px;
     }
 }
