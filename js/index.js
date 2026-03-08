@@ -118,28 +118,3 @@ window.addEventListener("resize", () => {
     if (!isSiteInitialized) return;
     initGalleryVisibility();
 });
-
-/*header*/
-const burger = document.getElementById('burger-btn');
-    const nav = document.getElementById('nav-menu');
-
-    burger.addEventListener('click', () => {
-        // Перемикаємо клас active для меню
-        nav.classList.toggle('active');
-        
-        // Змінюємо іконку бургера на "X" при відкритті
-        if (nav.classList.contains('active')) {
-            burger.textContent = '✕';
-        } else {
-            burger.textContent = '☰';
-        }
-    });
-
-    // Закриваємо меню при кліку на будь-яке посилання
-    const navLinks = document.querySelectorAll('.nav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('active');
-            burger.textContent = '☰';
-        });
-    });
