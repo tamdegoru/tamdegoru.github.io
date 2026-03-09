@@ -23,7 +23,7 @@ global.header.html Вова
 
 index.aboutus.html Вова + Діма
 
-index.hero.aboutus.html софія + Діма +Вова
+index.hero.aboutus.html Софія + Діма + Вова
 
 index.hero.bg.html Вова
 
