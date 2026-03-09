@@ -31,6 +31,8 @@ index.services.html Вова
 
 index.slider.galery.html Діма
 
+index.html Вова + Діма
+
 
 
 
