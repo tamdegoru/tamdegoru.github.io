@@ -21,11 +21,11 @@ global.footer.html Софія
 
 global.header.html Вова
 
-index.aboutus.html Вова + Діма
+index.aboutus.html Софія
 
 index.hero.aboutus.html Софія + Діма + Вова
 
-index.hero.bg.html Вова
+index.hero.bg.html Вова + Діма
 
 index.services.html Вова
 
