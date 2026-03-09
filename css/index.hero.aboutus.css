@@ -25,7 +25,7 @@
             align-items: center;
             position: relative;
             
-            /* ТУТ ТВОЄ СПІЛЬНЕ ЗОБРАЖЕННЯ */
+            /* !!!! для моб версії треба інше ЗОБРАЖЕННЯ */
             background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
                               url('../images/header.hero.bg.jpg');
             background-size: cover;
