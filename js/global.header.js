@@ -13,7 +13,9 @@ export function initHeader() {
         if (!burger.dataset.bound) {
             burger.addEventListener("click", () => {
                 nav.classList.toggle("active");
-                burger.textContent = nav.classList.contains("active") ? "✕" : "☰";
+                const isOpen = nav.classList.contains("active");
+                burger.textContent = isOpen ? "✕" : "☰";
+                burger.setAttribute("aria-expanded", String(isOpen));
             });
 
             const navLinks = nav.querySelectorAll("a");
@@ -21,6 +23,7 @@ export function initHeader() {
                 link.addEventListener("click", () => {
                     nav.classList.remove("active");
                     burger.textContent = "☰";
+                    burger.setAttribute("aria-expanded", "false");
                 });
             });
 
