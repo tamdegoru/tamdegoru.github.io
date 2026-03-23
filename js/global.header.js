@@ -1,4 +1,5 @@
 let headerInitialized = false;
+let scrollHandlerBound = false;
 
 export function initHeader() {
     const header = document.querySelector(".header");
@@ -6,45 +7,46 @@ export function initHeader() {
     const nav = document.querySelector("#nav-menu");
 
     if (!header) {
+        console.warn("Header not found: .header");
         return false;
     }
 
-    if (burger && nav) {
-        if (!burger.dataset.bound) {
-            burger.addEventListener("click", () => {
-                nav.classList.toggle("active");
-                const isOpen = nav.classList.contains("active");
-                burger.textContent = isOpen ? "✕" : "☰";
-                burger.setAttribute("aria-expanded", String(isOpen));
-            });
+    // Бургер-меню
+    if (burger && nav && !burger.dataset.bound) {
+        burger.addEventListener("click", () => {
+            const isOpen = nav.classList.toggle("active");
 
-            const navLinks = nav.querySelectorAll("a");
-            navLinks.forEach((link) => {
-                link.addEventListener("click", () => {
-                    nav.classList.remove("active");
-                    burger.textContent = "☰";
-                    burger.setAttribute("aria-expanded", "false");
-                });
-            });
+            burger.textContent = isOpen ? "✕" : "☰";
+            burger.setAttribute("aria-expanded", String(isOpen));
+            header.classList.toggle("menu-open", isOpen);
+        });
 
-            burger.dataset.bound = "true";
-        }
+        nav.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                nav.classList.remove("active");
+                header.classList.remove("menu-open");
+                burger.textContent = "☰";
+                burger.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        burger.dataset.bound = "true";
     }
 
-    if (headerInitialized) {
-        return true;
+    // Скрол-ефект для header
+    if (!scrollHandlerBound) {
+        const onScroll = () => {
+            if (window.scrollY > 80) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        };
+
+        window.addEventListener("scroll", onScroll);
+        onScroll();
+        scrollHandlerBound = true;
     }
-
-    const onScroll = () => {
-        if (window.scrollY > 80) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
-        }
-    };
-
-    window.addEventListener("scroll", onScroll);
-    onScroll();
 
     headerInitialized = true;
     return true;
