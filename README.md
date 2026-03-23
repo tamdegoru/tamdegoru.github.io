@@ -21,11 +21,11 @@ global.footer.html Софія
 
 global.header.html Вова
 
-index.aboutus.html Софія
+index.aboutus.html Софія (на сайті нема )
 
-index.hero.aboutus.html Софія + Діма + Вова
+index.hero.aboutus.html Софія + Діма + Вова (зроблено з index.aboutus.html + index.hero.bg.html)
 
-index.hero.bg.html Вова + Діма
+index.hero.bg.html Вова + Діма  (на сайті нема )
 
 index.services.html Вова
 
