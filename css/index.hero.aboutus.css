@@ -144,7 +144,6 @@
         @media (max-width: 768px) {
             .hero { justify-content: center; padding: 0 20px; }
             .header-container { padding: 0 15px; }
-            .nav { display: none; } /* Для простоти бургер тут не прописаний */
             /* На мобільних фіксований фон іноді глючить, тому вимикаємо */
             .hero, .tdg-booking-section { background-attachment: scroll; } 
         }
