@@ -1,4 +1,3 @@
-/* SLIDER */
 .galery-slider {
     position: relative;
     width: 100%;
@@ -15,7 +14,7 @@
     width: 100%;
     height: 400px;
     object-fit: cover;
-     /* КРИТИЧНО ВАЖЛИВО */
+
     flex: 0 0 100%;
 }
 
@@ -37,7 +36,6 @@
     font-size: 20px;
 }
 
-/* GRID */
 .galery-grid {
     padding: 40px;
     display: grid;
