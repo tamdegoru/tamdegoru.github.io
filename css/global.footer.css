@@ -1,11 +1,9 @@
-/* Основний фон та колір тексту футера */
 .footer {
-    background: #1f2a1f; 
+    background: #1f2a1f;
     color: white;
     padding: 60px 20px 20px;
 }
 
-/* Сітка для розташування 4 колонок */
 .footer-container {
     max-width: 1200px;
     margin: auto;
@@ -19,7 +17,6 @@
 .footer-section ul { list-style: none; padding: 0; }
 .footer-section ul li { margin-bottom: 10px; }
 
-/* Стилізація посилань */
 .footer-section a {
     color: white;
     text-decoration: none;
@@ -28,7 +25,6 @@
 
 .footer-section a:hover { color: orange; }
 
-/* Логотип: налаштування розміру та курсору для кліку */
 .footer-logo {
     width: 120px;
     margin-bottom: 15px;
@@ -37,7 +33,6 @@
 
 .social-icons a { display: block; margin-bottom: 10px; }
 
-/* Нижня смужка футера */
 .footer-bottom {
     border-top: 1px solid #444;
     margin-top: 40px;
@@ -48,7 +43,6 @@
     flex-wrap: wrap;
 }
 
-/* Адаптивність для телефонів (одна колонка) */
 @media (max-width: 768px) {
     .footer-container {
         grid-template-columns: 1fr;

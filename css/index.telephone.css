@@ -10,7 +10,6 @@
     padding: 0 7vw;
 }
 
-/* Темний фільтр на фонове фото */
 .hero::before {
     content: "";
     position: absolute;

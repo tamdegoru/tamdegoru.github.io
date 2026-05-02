@@ -1,4 +1,3 @@
-/* 1. Скидання стилів та базові налаштування */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -12,24 +11,22 @@ html {
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    overflow-x: hidden; /* Захист від горизонтальної прокрутки */
+    overflow-x: hidden;
     color: #333;
 }
 
-/* 2. ШАПКА (HEADER) */
 .header {
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     padding: 20px 0;
-    /* Початковий напівпрозорий фон */
-    background: rgba(0, 0, 0, 0.3); 
+
+    background: rgba(0, 0, 0, 0.3);
     transition: all 0.4s ease;
     z-index: 1000;
 }
 
-/* Ефект при скролі (додається через JS) */
 .header.scrolled {
     background: #1a241a;
     padding: 10px 0;
@@ -56,7 +53,6 @@ body {
     width: 90px;
 }
 
-/* 3. НАВІГАЦІЯ (MENU) */
 .nav {
     display: flex;
     align-items: center;
@@ -73,12 +69,11 @@ body {
 }
 
 .nav a:hover {
-    color: #ff9800; /* Помаранчевий акцент */
+    color: #ff9800;
 }
 
-/* 4. БУРГЕР-КНОПКА */
 .burger {
-    display: none; /* Сховано на десктопах */
+    display: none;
     font-size: 32px;
     color: white;
     cursor: pointer;
@@ -91,16 +86,15 @@ body {
     line-height: 1;
 }
 
-/* 5. АДАПТИВНІСТЬ (MOBILE) */
 @media (max-width: 768px) {
     .burger {
-        display: block; /* Показуємо бургер */
+        display: block;
     }
 
     .nav {
         position: fixed;
         top: 0;
-        right: -100%; /* Ховаємо меню за межі екрана */
+        right: -100%;
         width: 280px;
         height: 100vh;
         background: #1a241a;
@@ -111,7 +105,6 @@ body {
         box-shadow: -10px 0 20px rgba(0,0,0,0.5);
     }
 
-    /* Клас, який додається через JavaScript */
     .nav.active {
         right: 0;
     }
