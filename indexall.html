@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self'; 
+    script-src 'self' 'unsafe-inline' 'unsafe-eval'; 
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+    img-src 'self' data:;
+    font-src 'self' https://fonts.gstatic.com;
+    connect-src 'self';
+">
+    <title>Home</title>
+    <link rel="icon" href="images/logohata.png" type="image/x-icon">
+    <style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    color: #333;
+}
+
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 20px 0;
+
+    background: rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+    z-index: 1000;
+}
+
+.header.scrolled {
+    background: #1a241a;
+    padding: 10px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+    display: block;
+    transition: 0.4s;
+}
+
+.header.scrolled .logo {
+    width: 90px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.nav a:hover {
+    color: #ff9800;
+}
+
+.burger {
+    display: none;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    z-index: 1100;
+    transition: 0.3s;
+    user-select: none;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .burger {
+        display: block;
+    }
+
+    .nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: #1a241a;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -10px 0 20px rgba(0,0,0,0.5);
+    }
+
+    .nav.active {
+        right: 0;
+    }
+
+    .nav a {
+        margin: 15px 0;
+        font-size: 22px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+.footer {
+    background: #1f2a1f;
+    color: white;
+    padding: 60px 20px 20px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+.footer-section h3 { margin-bottom: 15px; }
+
+.footer-section ul { list-style: none; padding: 0; }
+.footer-section ul li { margin-bottom: 10px; }
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section a:hover { color: orange; }
+
+.footer-logo {
+    width: 120px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.social-icons a { display: block; margin-bottom: 10px; }
+
+.footer-bottom {
+    border-top: 1px solid #444;
+    margin-top: 40px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+
+.galery-slider {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.galery-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.galery-slides img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+
+    flex: 0 0 100%;
+}
+
+.galery-buttons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.galery-buttons button {
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.galery-grid {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.galery-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.galery-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.galery-grid img:hover {
+    transform: scale(1.05);
+}
+
+.galery-actions {
+    display: flex;
+    justify-content: center;
+    padding: 0 40px 40px;
+}
+
+.show-all-gallery-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 18px;
+    cursor: pointer;
+    background: #111;
+    color: #fff;
+    font-size: 14px;
+    transition: background 0.2s ease-in-out;
+}
+
+.show-all-gallery-btn:hover {
+    background: #333;
+}
+
+@media (max-width: 767px) {
+    .galery-card.is-hidden-mobile {
+        display: none;
+    }
+}
+
+.galery-footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #fff;
+  background-color: #fff;
+}
+
+.hero,
+.tdg-booking-section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('../images/header.hero.bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.hero {
+  justify-content: flex-end;
+  padding: 0 7vw;
+}
+
+.hero-lead-form {
+  width: min(100%, 430px);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 35px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.hero-lead-form h1 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.hero-lead-form p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-lead-form input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  outline: none;
+}
+
+.hero-lead-form button {
+  background: #ff8c2f;
+  color: #fff;
+  border: none;
+  padding: 16px;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(255, 140, 47, 0.4);
+  transition: 0.3s ease;
+}
+
+.hero-lead-form button:hover {
+  background: #ff7a12;
+  transform: translateY(-2px);
+}
+
+.tdg-booking-section {
+  justify-content: center;
+  padding: 100px 20px;
+  overflow: hidden;
+}
+
+.tdg-about-hero-full-text-container {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 60px 40px;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 850px;
+  text-align: center;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+}
+
+.tdg-about-hero-main-title-display {
+  color: #ff9800;
+  font-size: clamp(32px, 5vw, 52px);
+  margin-bottom: 25px;
+  text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.tdg-about-hero-lead-paragraph {
+  font-size: clamp(18px, 2.5vw, 22px);
+  line-height: 1.6;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+.tdg-about-hero-lead-paragraph strong { color: #ffb74d; }
+
+.tdg-about-hero-secondary-paragraph {
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.7;
+  color: #e0e0e0;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.tdg-divider-accent-symbol {
+  color: #ff9800;
+  font-size: 22px;
+  letter-spacing: 12px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  .header-container { padding: 0 15px; }
+
+  .hero,
+  .tdg-booking-section { background-attachment: scroll; }
+}
+
+
+.services {
+  background: url("../../img/services/services-bg.jpg") center/cover no-repeat;
+  padding: 80px 0;
+  position: relative;
+}
+
+.services__container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.services__header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.services__title {
+  font-size: 38px;
+  font-family: "Pacifico", cursive;
+  color: black;
+  text-align: center;
+}
+
+.services__list {
+  display: grid;
+  gap: 32px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .services__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .services__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.services__card {
+  position: relative;
+  height: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 6px 24px rgba(0,0,0,.2);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.services__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.services__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(0,0,0,.4);
+}
+
+.services__subtitle,
+.services__description {
+  position: relative;
+  z-index: 2;
+}
+
+.services__subtitle {
+  font-size: 22px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin-bottom: 10px;
+}
+
+.services__description {
+  font-size: 15px;
+  line-height: 1.6;
+  font-family: "Roboto", sans-serif;
+}
+
+
+.accomondation {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 16px;
+}
+
+.accomondation-title {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 32px;
+    color: #24463b;
+}
+
+.accomondation-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.room-card {
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+}
+
+.room-card-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.room-card-body {
+    padding: 14px 16px 18px;
+}
+
+.room-card-title {
+    margin: 0 0 10px;
+    color: #1f3c32;
+}
+
+.room-card-description {
+    margin: 0 0 14px 18px;
+    padding: 0;
+    color: #2f2f2f;
+}
+
+.room-card-description li {
+    margin-bottom: 4px;
+}
+
+.room-card-button {
+    border: none;
+    border-radius: 10px;
+    background: #1f6b54;
+    color: #ffffff;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.room-card-button:hover {
+    background: #16513f;
+}
+
+.room-card-more {
+    margin-top: 12px;
+    color: #2f2f2f;
+}
+
+@media (max-width: 768px) {
+    .accomondation-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+.flip-h { transform: scaleX(-1); }
+.flip-v { transform: scaleY(-1); }
+.flip-both { transform: scale(-1, -1); }
+    </style>
+</head>
+<body>
+
+<header class="header" id="main-header">
+        <div class="header-container">
+            <a href="#home" class="logo-link">
+                <img src="images/logo-removebg-preview.png" class="logo" alt="Логотип">
+            </a>
+
+            <nav class="nav" id="nav-menu">
+                <a href="#about">Про нас</a>
+                <a href="#services">Послуги</a>
+                <a href="#accomondation">Оренда житла</a>
+                <a href="#contacts">Контакти</a>
+            </nav>
+
+            <button class="burger" id="burger-btn" type="button" aria-label="Відкрити меню" aria-expanded="false">☰</button>
+        </div>
+    </header>
+
+<section id="home" class="hero">
+        <div class="hero-content hero-content--form">
+            <form class="hero-lead-form">
+                <h1>Пригоди починаються в tamdegoru</h1>
+                <p>Сплануйте свою наступну відпустку та насолоджуйтесь природою навколо вас</p>
+                <input type="text" placeholder="Ім’я">
+                <input type="tel" placeholder="Номер телефону">
+                <button type="submit">ЗАМОВИТИ ДЗВІНОК</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="about" class="tdg-booking-section">
+        <div class="tdg-about-hero-full-text-container">
+            <h2 class="tdg-about-hero-main-title-display">Там, де гори шепочуть вашій душі</h2>
+            
+            <div class="tdg-about-hero-description-content">
+                <p class="tdg-about-hero-lead-paragraph">
+                    Відкрийте для себе досконалий спокій серед Карпатських гір. 
+                    <strong>tamdegoru</strong> — це місце, де величні смереки зустрічаються з домашнім затишком.
+                </p>
+                <p class="tdg-about-hero-secondary-paragraph">
+                    Тут на вас чекають мальовничі стежки, чисте повітря та краєвиди, що перехоплюють подих. 
+                    Знайдіть свій спокій, сплануйте свій маршрут і відчуйте справжню магію гір разом із нами!
+                </p>
+            </div>
+
+            <div class="tdg-about-hero-final-divider">
+                <span class="tdg-divider-accent-symbol">✦ ✦ ✦</span>
+            </div>
+        </div>
+    </section>
+
+<section  id="services" class="services" aria-labelledby="services-title">
+  <div class="services__container">
+
+    <div class="services__header">
+      <h2 id="services-title" class="services__title">Наші послуги</h2>
+    </div>
+
+    <ul class="services__list">
+
+      <li class="services__item">
+        <article class="services__card" style="background-image:url('images/services/hatakar1.jpg')">
+          <h3 class="services__subtitle">🏡 Затишні будинки та кімнати</h3>
+          <p class="services__description">Виберіть ідеальний будинок або кімнату для двох чи великої компанії.</p>
+        </article>
+      </li>
+
+      <li class="services__item">
+        <article class="services__card" style="background-image:url('images/services/snidanok2.jpg')">
+          <h3 class="services__subtitle">🥐 Сніданки та харчування</h3>
+          <p class="services__description">Домашня кухня з локальних продуктів або зона для приготування їжі.</p>
+        </article>
+      </li>
+
+      <li class="services__item">
+        <article class="services__card" style="background-image:url('images/services/progulyanka1.jpg')">
+          <h3 class="services__subtitle">🌲 Прогулянки горами</h3>
+          <p class="services__description">Маршрути до водоспадів та озер прямо від вашого будинку.</p>
+        </article>
+      </li>
+
+      <li class="services__item">
+        <article class="services__card" style="background-image:url('images/services/vidpochinok1.jpg')">
+          <h3 class="services__subtitle">🚴 Активний відпочинок</h3>
+          <p class="services__description">Веломандрівки, риболовля та катання на конях.</p>
+        </article>
+      </li>
+
+      <li class="services__item">
+        <article class="services__card" style="background-image:url('images/services/chan1.jpg')">
+          <h3 class="services__subtitle">♨️ Спа та релакс</h3>
+          <p class="services__description">Карпатський чан, сауна та масаж серед природи.</p>
+        </article>
+      </li>
+
+      <li class="services__item">
+        <article class="services__card" style="background-image:url('images/services/internet1.jpg')">
+          <h3 class="services__subtitle">📶 Wi-Fi та робочі місця</h3>
+          <p class="services__description">Стабільний інтернет і зручні робочі зони.</p>
+        </article>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+<div class="galery-slider">
+    <div class="galery-slides" id="galery-slides">
+        <img src="images/slide/slide1.jpg">
+        <img src="images/slide/slide2.jpg">
+        <img src="images/slide/slide3.jpg">
+        <img src="images/slide/slide4.jpg">
+        <img src="images/slide/slide5.jpg">
+        <img src="images/slide/slide6.jpg">
+        <img src="images/slide/slide7.jpeg">
+    </div>
+
+    <div class="galery-buttons">
+        <button onclick="galeryPrev()">❮</button>
+        <button onclick="galeryNext()">❯</button>
+    </div>
+</div>
+
+<section class="accomondation" id="accomondation">
+    <h2 class="accomondation-title">Наші номери</h2>
+
+    <div class="accomondation-grid">
+        <article class="room-card" data-room-card>
+            <img src="images/gallery/kimnata1.jpg" alt="Сімейний номер" class="room-card-image">
+            <div class="room-card-body">
+                <h3 class="room-card-title">Сімейний номер</h3>
+                <ul class="room-card-description">
+                    <li>Власний вихід на терасу та вид на озеро.</li>
+                    <li>Місткість: 👥 2 особи/li>
+                    <li>Зручності: Окремий вхід, BBQ, звукоізоляція.</li>
+                     <li>Ціна: 2 350 грн</li> 
+                </ul>
+                <button type="button" class="room-card-button" data-room-button>Забронювати</button>
+                <p class="room-card-more" data-room-more hidden>
+                    Просторий номер з окремою зоною відпочинку, ортопедичними ліжками та великим балконом.
+                </p>
+            </div>
+        </article>
+
+        <article class="room-card" data-room-card>
+            <img src="images/gallery/kimnata2.jpg" alt="Стандартний номер" class="room-card-image">
+            <div class="room-card-body">
+                <h3 class="room-card-title">Стандартний номер</h3>
+                <ul class="room-card-description">
+                    <li>До 2 гостей</li>
+                    <li>Телевізор та Wi‑Fi</li>
+                    <li>Сучасна ванна кімната</li>
+                </ul>
+                <button type="button" class="room-card-button" data-room-button>Забронювати</button>
+                <p class="room-card-more" data-room-more hidden>
+                    Затишний номер для парного відпочинку з комфортним ліжком, робочим столом і шафою.
+                </p>
+            </div>
+        </article>
+
+        <article class="room-card" data-room-card>
+            <img src="images/gallery/kimnata3.jpg" alt="Покращений номер" class="room-card-image">
+            <div class="room-card-body">
+                <h3 class="room-card-title">Покращений номер</h3>
+                <ul class="room-card-description">
+                    <li>Панорамні вікна</li>
+                    <li>Кондиціонер</li>
+                    <li>Міні‑бар</li>
+                </ul>
+                <button type="button" class="room-card-button" data-room-button>Забронювати</button>
+                <p class="room-card-more" data-room-more hidden>
+                    Ідеальний варіант для тривалого проживання: більше простору, додаткові меблі та тиха атмосфера.
+                </p>
+            </div>
+        </article>
+
+        <article class="room-card" data-room-card>
+            <img src="images/gallery/kimnata4.jpg" alt="Люкс" class="room-card-image">
+            <div class="room-card-body">
+                <h3 class="room-card-title">Люкс</h3>
+                <ul class="room-card-description">
+                    <li>Окрема спальня</li>
+                    <li>Преміум сервіс</li>
+                    <li>Зона для роботи</li>
+                </ul>
+                <button type="button" class="room-card-button" data-room-button>Забронювати</button>
+                <p class="room-card-more" data-room-more hidden>
+                    Номер найвищого класу з покращеним інтер'єром, м'якими меблями й додатковими зручностями.
+                </p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- 12 ФОТО -->
+<section class="galery-grid" id="galery-grid">
+    <div class="galery-card">
+        <img src="images/gallery/gallery1.webp" alt="Галерея 1">
+    </div>
+    <div class="galery-card">
+        <img src="images/gallery/gallery2.jpg" alt="Галерея 2">
+    </div>
+    <div class="galery-card">
+        <img src="images/gallery/galery3.jpg" alt="Галерея 3">
+    </div>
+    <div class="galery-card">
+        <img src="images/gallery/gallery4.webp" alt="Галерея 4">
+    </div>
+    <div class="galery-card">
+        <img src="images/gallery/gallery5.webp" alt="Галерея 5">
+    </div>
+    <div class="galery-card">
+        <img src="images/gallery/gallery6.jpg" alt="Галерея 6">
+    </div>
+    <div class="galery-card">
+        <img src="images/gallery/galery7.jpg" alt="Галерея 7">
+    </div>
+    <div class="galery-card">
+        <img src="images/gallery/galery8.jpg" alt="Галерея 8">
+    </div>
+    <div class="galery-card">
+        <img src="images/gallery/galery9.jpg" alt="Галерея 9">
+    </div>
+    <div class="galery-card">
+        <img src="images/gallery/galery10.jpg" alt="Галерея 10">
+    </div>
+
+</section>
+
+<div class="galery-actions">
+    <button id="show-all-gallery-btn" class="show-all-gallery-btn" type="button">Показати всі зображення</button>
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-section">
+            <img src="images/logo.png" alt="Логотип" class="footer-logo" id="footerLogo">
+            <p class="footer-text">
+                Подорожі, природа та затишні місця.
+            </p>
+        </div>
+        <div class="footer-section">
+            <h3>Навігація</h3>
+            <ul>
+                <li><a href="#about">Про нас</a></li>
+                <li><a href="#services">Послуги</a></li>
+                <li><a href="#accomondation">Оренда житла</a></li> </ul>
+        </div>
+
+        <div id= "contacts" class="footer-section">
+            <h3>Контакти</h3>
+            <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
+            <p>Телефон: <a href="tel:+380957376967">+380957376967</a></p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Соцмережі</h3>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank">Facebook</a>
+                <a href="https://instagram.com" target="_blank">Instagram</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© <span id="year"></span> TamDeGoru. Усі права захищені.</p>
+    </div>
+</footer>
+
+<script type="module" src="js/index.js"></script>
+
+</body>
+</html>
