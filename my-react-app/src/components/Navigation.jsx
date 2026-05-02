@@ -1,22 +1,16 @@
-import { useRouter } from '../App';
+import { NavLink } from 'react-router-dom';
 
 export default function Navigation({ items }) {
-  const { path, navigate } = useRouter();
-
   return (
     <nav className="nav">
       {items.map((item) => (
-        <a
+        <NavLink
           key={item.path}
-          href={item.path}
-          className={`nav-link ${path === item.path ? 'active' : ''}`}
-          onClick={(event) => {
-            event.preventDefault();
-            navigate(item.path);
-          }}
+          to={item.path}
+          className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
         >
           {item.label}
-        </a>
+        </NavLink>
       ))}
     </nav>
   );

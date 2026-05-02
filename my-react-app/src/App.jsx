@@ -1,12 +1,10 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import './App.css';
-
-const RouterContext = createContext({ path: '/', navigate: () => {} });
 
 const navigationItems = [
   { label: 'Головна', path: '/' },
@@ -20,52 +18,20 @@ const tableData = [
   { id: 4, service: 'Чан та сауна', price: '1200 грн', season: 'Цілий рік' },
 ];
 
-export function useRouter() {
-  return useContext(RouterContext);
-}
-
-function RouterProvider({ children }) {
-  const [path, setPath] = useState(window.location.pathname || '/');
-
-  useEffect(() => {
-    const onPopState = () => setPath(window.location.pathname || '/');
-    window.addEventListener('popstate', onPopState);
-    return () => window.removeEventListener('popstate', onPopState);
-  }, []);
-
-  const navigate = (nextPath) => {
-    if (nextPath !== path) {
-      window.history.pushState({}, '', nextPath);
-      setPath(nextPath);
-    }
-  };
-
-  const value = useMemo(() => ({ path, navigate }), [path]);
-
-  return <RouterContext.Provider value={value}>{children}</RouterContext.Provider>;
-}
-
-function RouteView() {
-  const { path } = useRouter();
-
-  if (path === '/about') {
-    return <AboutPage />;
-  }
-
-  return <HomePage tableData={tableData} />;
-}
-
 export default function App() {
   return (
-    <RouterProvider>
+    <BrowserRouter>
       <Header title={`Садиба "Горизонт" — лабораторна на React`} />
       <Navigation items={navigationItems} />
 
       <main className="layout">
-        <RouteView />
+        <Routes>
+          <Route path="/" element={<HomePage tableData={tableData} />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
       </main>
 
       <Footer />
-    </RouterProvider>
+    </BrowserRouter>
   );
 }
